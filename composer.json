@@ -1,0 +1,57 @@
+{
+  "name": "lamalama/laravel-eyemove",
+  "description": "EyeMove for Laravel",
+  "keywords": [
+    "Laravel",
+    "EyeMove",
+  ],
+  "homepage": "https://github.com/lamalamaNL/laravel-eyemove",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Lama Lama",
+      "email": "info@lamalama.nl"
+    },
+    {
+      "name": "Mark de Vries",
+      "email": "mark@lamalama.nl"
+    }
+  ],
+  "require": {
+    "php": "^7.3"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^5.0",
+    "pestphp/pest": "^0.1.5",
+    "phpunit/phpunit": "^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "LamaLama\\EyeMove\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "LamaLama\\EyeMove\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "LamaLama\\EyeMove\\EyeMoveServiceProvider"
+        ],
+        "aliases": {
+            "Package": "LamaLama\\EyeMove\\EyeMoveFacade"
+        }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
