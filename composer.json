@@ -48,7 +48,7 @@
             "LamaLama\\EyeMove\\EyeMoveServiceProvider"
         ],
         "aliases": {
-            "Package": "LamaLama\\EyeMove\\EyeMoveFacade"
+            "EyeMove": "LamaLama\\EyeMove\\EyeMoveFacade"
         }
     }
   },

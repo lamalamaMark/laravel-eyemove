@@ -2,23 +2,28 @@
 
 namespace LamaLama\EyeMove;
 
+use LamaLama\EyeMove\Leads;
+use LamaLama\EyeMove\Projects;
+
 class EyeMove
 {
     /**
-     * Construct.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Index.
+     * Leads.
      *
      * @return void
      */
-    public function index()
+    public function leads()
     {
-        //
+        return new Leads();
+    }
+
+    /**
+     * Projects.
+     *
+     * @return void
+     */
+    public function projects()
+    {
+        return new Projects();
     }
 }
