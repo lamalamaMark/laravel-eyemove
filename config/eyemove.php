@@ -4,14 +4,34 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Package Name
+    | Username
     |--------------------------------------------------------------------------
     |
-    | This value is the name of your package. This value is used when the
-    | package needs to place the package's name in a notification or
-    | any other location as required by the package.
+    | The EyeMove username
     |
     */
 
-    'name' => 'EyeMove for Laravel',
+    'username' => env('EYEMOVE_USERNAME', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Password
+    |--------------------------------------------------------------------------
+    |
+    | The EyeMove password
+    |
+    */
+
+    'password' => env('EYEMOVE_PASSWORD', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Customer
+    |--------------------------------------------------------------------------
+    |
+    | The EyeMove customer
+    |
+    */
+
+    'customer' => env('EYEMOVE_CUSTOMER', null),
 ];
