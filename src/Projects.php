@@ -2,7 +2,7 @@
 
 namespace LamaLama\EyeMove;
 
-class Projects
+class Projects extends EyeMove
 {
     /**
      * List.
