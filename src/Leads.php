@@ -40,8 +40,8 @@ class Leads extends EyeMove
     }
 
     /**
-     * hasResult
-     * @param  [type]  $response
+     * hasResult.
+     * @param  string  $response
      * @return boolean
      */
     private function hasResult(string $response)

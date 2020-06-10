@@ -2,7 +2,7 @@
 
 namespace LamaLama\EyeMove;
 
-class PropertyInterests
+class PropertyInterests extends EyeMove
 {
     /**
     * Create.
@@ -32,11 +32,22 @@ class PropertyInterests
                 </soap:Body>
             </soap:Envelope>';
 
-        $response = $this->curlEyemove($xml, '/WoningInteresse.asmx');
-        $obj = simplexml_load_string($response);
+        $response = $this->post('WoningInteresse.asmx', $xml);
 
-        return ($result = $obj->children('http://schemas.xmlsoap.org/soap/envelope/')->Body->children('http://ws.eye-move.nl/WoningInteresse')->AddResponse->AddResult->Succeeded) {
+        return ($result = $this->hasSucceeded($response))
             ? $result
             : false;
+    }
+
+    /**
+     * hasSucceeded.
+     * @param  string  $response
+     * @return boolean
+     */
+    private function hasSucceeded(string $response)
+    {
+        $obj = simplexml_load_string($response);
+
+        return $obj->children('http://schemas.xmlsoap.org/soap/envelope/')->Body->children('http://ws.eye-move.nl/WoningInteresse')->AddResponse->AddResult->Succeeded;
     }
 }

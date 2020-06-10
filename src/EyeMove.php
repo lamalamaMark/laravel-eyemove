@@ -8,7 +8,7 @@ use Zttp\Zttp;
 
 class EyeMove
 {
-    private $apiUrl = 'https://api.sneakerdistrict.com';
+    private $apiUrl = 'http://ws.eye-move.nl';
 
     /**
      * get.
