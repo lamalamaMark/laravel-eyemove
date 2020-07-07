@@ -23,7 +23,7 @@ class PropertyInterests extends EyeMove
                 <soap:Body>
                     <Add xmlns="http://ws.eye-move.nl/WoningInteresse">
                         <Gegevens>
-                            <RelatieID>'.$params['id'].'</RelatieID>
+                            <RelatieID>'.$params['relationId'].'</RelatieID>
                             <WoningID>'.$params['propertyId'].'</WoningID>
                             <Afgevallen>false</Afgevallen>
                             <Datum>'.date('Y-m-d').'T00:00:00</Datum>
@@ -48,6 +48,6 @@ class PropertyInterests extends EyeMove
     {
         $obj = simplexml_load_string($response);
 
-        return $obj->children('http://schemas.xmlsoap.org/soap/envelope/')->Body->children('http://ws.eye-move.nl/WoningInteresse')->AddResponse->AddResult->Succeeded;
+        return $obj->children('http://schemas.xmlsoap.org/soap/envelope/')->Body->children('http://ws.eye-move.nl/WoningInteresse')->AddResponse->AddResult->Resultaat;
     }
 }

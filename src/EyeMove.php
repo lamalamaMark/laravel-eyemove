@@ -2,46 +2,44 @@
 
 namespace LamaLama\EyeMove;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use LamaLama\EyeMove\Leads;
 use LamaLama\EyeMove\Projects;
-use Zttp\Zttp;
+use LamaLama\EyeMove\PropertyInterests;
 
 class EyeMove
 {
-    private $apiUrl = 'http://ws.eye-move.nl';
-
     /**
-     * get.
-     *
-     * @return void
+     * $apiEndpoint
+     * @var string
      */
-    public function get($endpoint, $params)
+    private $apiEndpoint = 'https://ws.eye-move.nl';
+
+    public function post($url, $xml)
     {
-        $response = Zttp::get($this->url($endpoint), $params);
+        $headers = [
+            "Content-type: text/xml; charset=utf-8",
+            "Accept: text/xml",
+            "Cache-Control: no-cache",
+            "Pragma: no-cache",
+            "Content-length: ".strlen($xml),
+        ];
 
-        return $response->json();
-    }
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_URL, $this->apiEndpoint.'/'.$url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-    /**
-     * post.
-     *
-     * @return void
-     */
-    public function post($endpoint, $params)
-    {
-        $response = Zttp::post($this->url($endpoint), $params);
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-        return $response->json();
-    }
-
-    /**
-     * url
-     * @param  string $path
-     * @return string
-     */
-    private function url($path)
-    {
-        return $this->apiUrl.'/'.$path;
+        return $response;
     }
 
     /**
@@ -62,5 +60,15 @@ class EyeMove
     public function projects()
     {
         return new Projects();
+    }
+
+    /**
+     * PropertyInterests.
+     *
+     * @return void
+     */
+    public function propertyInterests()
+    {
+        return new PropertyInterests();
     }
 }
