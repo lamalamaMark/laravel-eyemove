@@ -3,7 +3,7 @@
 namespace LamaLama\EyeMove;
 
 use LamaLama\EyeMove\Exceptions\InvalidFeedUrl;
-use Zttp\Zttp;
+use Illuminate\Support\Facades\Http;
 
 class Projects extends EyeMove
 {
@@ -20,7 +20,7 @@ class Projects extends EyeMove
             throw new InvalidFeedUrl;
         }
 
-        $response = Zttp::get($url);
+        $response = Http::get($url);
         $contents = $response->getBody()->getContents();
 
         $xml = simplexml_load_string($contents, "SimpleXMLElement", LIBXML_NOCDATA);
